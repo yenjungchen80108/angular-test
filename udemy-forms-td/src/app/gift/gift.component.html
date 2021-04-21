@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div *ngIf="displayed">
+              <div 
+                id="user-data" 
+                ngModelGroup="userData"
+                #userData="ngModelGroup">
+                  <div class="form-group">
+                    <label for="username">Recipient name</label>
+                    <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    ngModel="username"
+                    name="username"
+                    required>
+                  </div>
+                  <button class="btn btn-default" type="button"
+                  (click)="suggestUserName()">Suggest an Username</button>
+                  <div
+                  class="form-group">
+                    <label for="email">Recipient Mail</label>
+                    <input
+                    type="email" 
+                    id="email"
+                    class="form-control"
+                    ngModel="email"
+                    name="email"
+                    required
+                    email
+                    #email="ngModel">
+                    <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+                  </div>
+                </div>
+                <p *ngIf="!userData.valid && userData.touched">User data is invalid!</p>
+                <div
+                id="gift-data"
+                  ngModelGroup="giftData"
+                  #giftData="ngModelGroup">
+                  <div class="form-group">
+                    <label for="giftoption">Gift Option</label>
+                    <select 
+                    id="giftoption"
+                    class="form-control"
+                    [ngModel]="defaultQuestion"
+                    name="giftoption">
+                      <option *ngFor="let giftoption of giftoptions">
+                        {{ giftoption.name }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="giftmessage">Gift Message</label>
+                    <textarea 
+                    name="questionAnswer" 
+                    row="3"
+                    class="form-control"
+                    [(ngModel)]="answer"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="giftmessage">Include a receipt?&nbsp;</label>
+                    <input type="checkbox" 
+                    name="receipt"
+                    [(ngModel)]="receipt"
+                    [checked]="!f.touched"
+                    (click)="filterData()"
+                    required>
+                  </div>
+                </div>
+                <p *ngIf="!giftData.valid && giftData.touched">Gift data is invalid!</p>
+                <span class="help-block" *ngIf="!f.valid && f.touched">Please enter the required field!</span>
+                <button class="btn btn-primary"
+                type="submit"
+                [disabled]="!f.valid">Submit</button>
+                </div>
+            <div class="row" *ngIf="submitted">
+              <div class="col-xs-12">
+                <div class="wrapper">
+                  <div class="row header">
+                    <table class="table">
+                      <thead>
+                          <tr>
+                            <th colspan="2">Your data</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                            <td>User name</td>
+                            <td>{{ user.username }}</td>
+                          </tr>
+                          <tr>
+                            <td>User email</td>
+                            <td>{{ user.email }}</td>
+                          </tr>
+                          <tr>
+                            <td>Gift Option</td>
+                            <td>{{ user.giftOption }}</td>
+                          </tr>
+                          <tr>
+                            <td>Message</td>
+                            <td>{{ user.answer }}</td>
+                          </tr>
+                          <tr>
+                            <td>Include a receipt?</td>
+                            <td>{{ user.addReceipt }}</td>
+                          </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <button
+                class="btn btn-default" type="button"
+                (click)="onReset()">
+                Reset
+                </button>
+                <button
+                class="btn btn-default" type="button"
+                (click)="onEdit()">
+                Edit
+                </button>
+                <!-- <h4
+                *ngFor="let product of products"
+                >Total: {{ product.price }}</h4> -->
+                <h4>Total: {{ user.total }}</h4>
+              </div>
+            </div>
+          </form>
+    </div>
+</div>

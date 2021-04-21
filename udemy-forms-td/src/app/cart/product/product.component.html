@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div *ngFor="let product of products | async">
+            <img src="assets/minions.jpg" height="80px" width="80px">
+            <h5>Product ID: {{ product.id }}</h5>
+            <p>Size: {{ product.size }}</p>
+            <p>Price: {{ product.price }}</p>
+            <button *ngIf="product.size==='small'"
+            (click)="updateProduct(product.id, 'large')">
+            To large
+            </button>
+            <button *ngIf="product.size==='large'"
+            (click)="updateProduct(product.id, 'small')">
+            To small
+            </button>
+            <button
+            (click)="deleteProduct(product.id)">
+            Delete
+            </button>
+            <!-- <div>
+                <h4>Total: {{ product.price }}</h4>
+            </div> -->
+        </div>
+        <button (click)="createProduct()">Create new product</button>
+    </div>
+</div>

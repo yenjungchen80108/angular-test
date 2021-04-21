@@ -1,0 +1,48 @@
+.title {
+  text-align: center;
+  border: 3px solid rgb(255, 203, 148);
+  background-color: bisque;
+}
+
+.wrap-all {
+  display: inline-flex;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 40px;
+  max-width: 800px;
+}
+  
+.table {
+  margin: 0 0 40px 0;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  display: table;
+}
+
+.row {
+  display: table-row;
+  background: #f6f6f6; 
+}
+
+.table tr:nth-child(odd) {
+  background: rgb(255, 255, 255);
+}
+
+.table tr:nth-child(even) {
+  background: rgb(235, 251, 255);
+}
+
+.table tr:hover {
+  background: rgb(208, 254, 255);
+  cursor: pointer;
+}
